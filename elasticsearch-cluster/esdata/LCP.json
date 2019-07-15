@@ -1,0 +1,48 @@
+{
+  "cpu": 4,
+  "env": {
+    "ES_JAVA_OPTS": "-Xms8g -Xmx8g"
+  },
+  "environments": {
+    "infra": {
+      "deploy": false
+    }
+  },
+  "id": "esdata",
+  "kind": "StatefulSet",
+  "livenessProbe": {
+    "tcpSocket": {
+      "port": 9300
+    },
+    "failureThreshold": 3,
+    "initialDelaySeconds": 10,
+    "periodSeconds": 30,
+    "successThreshold": 1,
+    "timeoutSeconds": 5
+  },
+  "memory": 12288,
+  "ports": [
+    {
+      "external": false,
+      "port": 9300
+    },
+    {
+      "external": false,
+      "port": 9200
+    }
+  ],
+  "readinessProbe": {
+    "tcpSocket": {
+      "port": 9300
+    },
+    "failureThreshold": 3,
+    "initialDelaySeconds": 10,
+    "periodSeconds": 30,
+    "successThreshold": 1,
+    "timeoutSeconds": 5
+  },
+  "scale": 5,
+  "volumes": {
+    "data": "/usr/share/elasticsearch/data"
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "cpu": 4,
+  "env": {
+    "ES_JAVA_OPTS": "-Xms8g -Xmx8g"
+  },
+  "environments": {
+    "infra": {
+      "deploy": false
+    }
+  },
+  "id": "esmaster",
+  "kind": "StatefulSet",
+  "livenessProbe": {
+    "httpGet": {
+      "path": "/_cluster/health",
+      "port": 9200
+    },
+    "initialDelaySeconds": 30,
+    "timeoutSeconds": 10
+  },
+  "memory": 12288,
+  "ports": [
+    {
+      "external": false,
+      "port": 9300
+    },
+    {
+      "external": false,
+      "port": 9200
+    }
+  ],
+  "podManagementPolicy": "Parallel",
+  "readinessProbe": {
+    "httpGet": {
+      "path": "/",
+      "port": 9200
+    },
+    "initialDelaySeconds": 10,
+    "timeoutSeconds": 10
+  },
+  "scale": 3,
+  "volumes": {
+    "datamaster": "/usr/share/elasticsearch/data"
+  }
+}

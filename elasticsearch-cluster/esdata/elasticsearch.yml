@@ -1,0 +1,18 @@
+cluster:
+  name: es-cluster
+node:
+  master: false
+  name: "${HOSTNAME}"
+  data: true
+  ingest: true
+  max_local_storage_nodes: 1
+http.enabled: false
+network.host: 0.0.0.0
+bootstrap:
+  memory_lock: false
+discovery:
+  zen:
+    ping:
+      unicast:
+        hosts: esmaster--cluster,esdata--cluster
+xpack.security.enabled: false
