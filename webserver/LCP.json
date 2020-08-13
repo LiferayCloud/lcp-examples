@@ -1,0 +1,45 @@
+{
+	"kind": "Deployment",
+	"id": "webserver",
+	"memory": 512,
+	"cpu": 2,
+	"scale": 1,
+	"loadBalancer": {
+		"targetPort": 80,
+		"cdn": true
+	},
+	"readinessProbe": {
+		"httpGet": {
+			"path": "/health",
+			"port": 80
+		},
+		"initialDelaySeconds": 10,
+		"timeoutSeconds": 10,
+		"failureThreshold": 3
+	},
+	"livenessProbe": {
+		"httpGet": {
+			"path": "/health",
+			"port": 80
+		},
+		"initialDelaySeconds": 30,
+		"timeoutSeconds": 10,
+		"failureThreshold": 3
+  },
+  "env": {
+    "WHITELISTED_IP": "11.22.333.444",
+    "SERVICE_ELASTICSEARCH_ID": "search",
+    "LCP_CPU": "2",
+    "WORKER_CONNECTIONS": "10000",
+    "KEEP_ALIVE_TIMEOUT": "65",
+    "HEALTH_CHECK_CIDR_IP": "10.0.0.0/8"
+  },
+	"environments": {
+		"dev": {
+			"loadBalancer": {
+				"targetPort": 80,
+				"cdn": true
+			}
+		}
+	}
+}
