@@ -1,0 +1,17 @@
+---
+# creates LoadBalancer Service that exposes the Service externally using a cloud provider's load balancer.
+apiVersion: v1
+kind: Service
+metadata:
+  name: elasticsearch-loadbalancer
+spec:
+  selector:
+    app: es-cluster
+  ports:
+    - name: http
+      port: 9200
+      targetPort: 9200
+    - name: http2
+      port: 9300
+      targetPort: 9300
+  type: LoadBalancer

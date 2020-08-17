@@ -1,0 +1,15 @@
+---
+# creates headless ClusterIP Service that exposes the Service on a cluster-internal IP.
+apiVersion: v1
+kind: Service
+metadata:
+  name: elasticsearch-cluster
+spec:
+  clusterIP: None
+  selector:
+    app: es-cluster
+  ports:
+    - name: http
+      port: 9200
+    - name: transport
+      port: 9300
