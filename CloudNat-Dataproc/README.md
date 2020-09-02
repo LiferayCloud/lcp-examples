@@ -132,9 +132,9 @@ Using SSH with IAP's TCP forwarding feature wraps an SSH connection inside HTTPS
 gcloud beta compute ssh --zone zone instance-name --tunnel-through-iap --project project-id
 ```
 
-**instance-name**name of the VM instance.<br/>
-**zone**instance’s zone.<br/>
-**project-id**project identification.<br/>
+**instance-name** name of the VM instance.<br/>
+**zone** instance’s zone.<br/>
+**project-id** project identification.<br/>
 
 Some documentation about connecting to instances using advanced methods<br/>
 https://cloud.google.com/compute/docs/instances/connecting-advanced#cloud_iap<br/>
