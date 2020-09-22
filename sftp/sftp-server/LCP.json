@@ -1,0 +1,13 @@
+{
+  "kind": "Deployment",
+  "id": "sftp",
+  "memory": 512,
+  "cpu": 1,
+  "scale": 1,
+  "ports": [
+    {
+      "port": 22,
+      "external": true
+    }
+  ]
+}
