@@ -1,0 +1,31 @@
+# (Required) The chart API version
+apiVersion: v2
+# (Required) The name of the chart
+name: lcp
+# (Required) A SemVer 2 version
+version: 0.1.0
+# (Optional) The version of the app that this contains
+appVersion: "1.22.0"
+# (Optional)  A list of the chart requirements
+dependencies: []
+# dependencies:
+#   - alias: common
+#     name: liferaycloud-common
+#     repository: file://../../../charts/stable/liferaycloud/common
+#     version: 1.0.0
+# (Optional) A single-sentence description of this project
+description: A Helm chart for Liferay Cloud Platform
+# (Optional) The URL of this projects home page
+home: https://github.com/liferaycloud/charts/
+# (Optional) A SemVer range of compatible Kubernetes versions
+kubeVersion: ">= 1.20.0-0"
+# (Optional) Information from the chart maintainers
+maintainers:
+  - email: devops@liferay.cloud
+    url: https://github.com/liferaycloud
+    name: LiferayCloud
+# (Optional) A list of URLs to source code for this project
+sources:
+  - https://github.com/liferaycloud/charts/
+# (Optional) The type of the chart
+type: application
