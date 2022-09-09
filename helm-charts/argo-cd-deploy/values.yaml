@@ -1,0 +1,90 @@
+global:
+  enabledArgocd: true
+  podAnnotations:
+    "cluster-autoscaler.kubernetes.io/safe-to-evict": "true"
+
+dex:
+  resources:
+    requests:
+      memory: 128Mi
+    limits:
+      memory: 500Mi
+
+redis:
+  enabled: true
+
+controller:
+  enableSatefulSet: true
+  clusterAdminAccess:
+    enabled: true
+  replicas: 1
+  logFormat: json
+  env:
+    - name: "ARGOCD_CONTROLLER_REPLICAS"
+      value: "3"
+  resources:
+    requests:
+      memory: 500Mi
+    limits:
+      memory: 3000Mi
+
+repoServer:
+  logFormat: json
+  replicas: 1
+  autoscaling:
+    enabled: false
+  clusterAdminAccess:
+    enabled: true
+  resources:
+    requests:
+      memory: 128Mi
+    limits:
+      memory: 500Mi
+  extraArgs:
+    - --revision-cache-expiration 60s
+
+applicationSet:
+  podAnnotations:
+    "cluster-autoscaler.kubernetes.io/safe-to-evict": "true"
+  replicaCount: 1
+  resources:
+    requests:
+      memory: 50Mi
+    limits:
+      memory: 256Mi
+  extraArgs:
+    - --logformat=json
+
+server:
+  config:
+    admin.enabled: "true"
+    jsonnet.enable: "false"
+    kustomize.enable: "false"
+    url: http://argocd.lfr.summit
+
+  resources:
+    requests:
+      memory: 256Mi
+    limits:
+      memory: 500Mi
+  logFormat: json
+
+  autoscaling:
+    enabled: true
+  clusterAdminAccess:
+    enabled: true
+  extraArgs:
+    - --insecure
+  ingress:
+    enabled: true
+    hosts:
+      - argocd.lfr.summit
+    paths:
+      - /*
+    pathType: ImplementationSpecific
+  service:
+    namedTargetPort: false
+    type: NodePort
+
+notifications:
+  enabled: false
