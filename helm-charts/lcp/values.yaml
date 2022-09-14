@@ -1,5 +1,5 @@
 # -- The number of provisioning pods to run
-replicaCount: 1
+replicaCount: 3
 image:
   # -- Image repository (when not specified, the Global value is used)
   repository: nginx
@@ -40,7 +40,6 @@ nodeSelector: {}
 tolerations: []
 # -- Affinity for pod assignment
 affinity: {}
-
 # common:
 #   config:
 #     configMaps:
@@ -52,10 +51,10 @@ affinity: {}
 #               <head>
 #                 <title>My nginx deployed by Helm Chart LCP</title>
 #                 <style>
-#                   html { 
+#                   html {
 #                     color-scheme: light dark;
 #                   }
-#                   body { 
+#                   body {
 #                     width: 30em;
 #                     margin: 0 auto;
 #                     font-family: Tahoma, Verdana, Arial, sans-serif;
@@ -71,7 +70,7 @@ affinity: {}
 #               <body>
 #               <div class="background">
 #             </div>
-                
+
 #             <p style="color:black;font-size:60px;">Question?</p>
 #             <h2>Thank you!</h2>
 #               </body>
