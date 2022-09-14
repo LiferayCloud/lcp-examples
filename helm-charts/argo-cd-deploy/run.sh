@@ -60,7 +60,6 @@ function install() {
   helm $command ${args[*]}
 
   kubectl delete appproject $KUBE_DRY_RUN --ignore-not-found=true --context ${KUBE_CONTEXT} -n $helmNamespace default
-
 }
 
 function uninstall() {

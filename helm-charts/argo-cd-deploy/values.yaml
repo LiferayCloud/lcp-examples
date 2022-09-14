@@ -75,16 +75,18 @@ server:
     enabled: true
   extraArgs:
     - --insecure
+
   ingress:
     enabled: true
     hosts:
       - argocd.lfr.summit
     paths:
-      - /*
-    pathType: ImplementationSpecific
+      - /
+    pathType: Prefix
+
   service:
     namedTargetPort: false
-    type: NodePort
+    type: ClusterIP
 
 notifications:
   enabled: false

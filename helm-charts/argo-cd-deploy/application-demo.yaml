@@ -1,0 +1,24 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: lcp
+  namespace: argocd-system
+spec:
+  project: bootstrap
+  source:
+    helm:
+      releaseName: lcp
+      valueFiles:
+        - values.yaml
+    path: ./helm-charts/lcp
+    repoURL: https://github.com/LiferayCloud/lcp-examples.git
+    targetRevision: master
+  destination:
+    name: in-cluster
+    namespace: lcp-system
+  syncPolicy:
+    automated:
+      prune: false
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
